@@ -5,19 +5,18 @@
 template <typename T>
 class QueueClass{
 private:
-    std::stack<T> enqueueStack, dequeueStack;
-    T frontElem;
-    bool isNew;
+    std::stack<T> enqueueStack, dequeueStack;   //two stacks used to implement the queue
+    T frontElem;                                //item in front of the queue
 
 public:
-    const T queueFront() const;
-    const T& queueTop() const;
-    void pushElem(const T& elem);
-    void popFromFront();
-    bool isEmpty() const;
-    int getSize() const;
+    const T queueFront() const;                 //returns the item in front of the queue
+    const T queueTop() const;                   //returns the top of the queue
+    void pushElem(const T& elem);               //adds an item to the queue
+    void popFromFront();                        //removes the front item from the front of the queue
+    bool isEmpty() const;                       //checks if the queue is empty
+    int getSize() const;                        //returns the size of the queue... i.e the number of items in the queue
 
-    QueueClass();
+    QueueClass();                               //constructor
 };
 
 template <typename T>
@@ -31,7 +30,7 @@ const T QueueClass<T>::queueFront() const{
 }
 
 template <typename T>
-const T& QueueClass<T>::queueTop() const{
+const T QueueClass<T>::queueTop() const{
     if(!enqueueStack.empty())
         return enqueueStack.top();
     std::cerr << "Queue is empty\n";
@@ -39,11 +38,10 @@ const T& QueueClass<T>::queueTop() const{
 
 template <typename T>
 void QueueClass<T>::pushElem(const T& elem){
-    if(isNew)
+    if(isEmpty)
         frontElem = elem;
 
     enqueueStack.push(elem);
-    isNew = false;
 }
 
 template <typename T>
@@ -76,7 +74,7 @@ int QueueClass<T>::getSize() const{
 }
 
 template <typename T>
-QueueClass<T>::QueueClass(): isNew(true) {
+QueueClass<T>::QueueClass() {
 
 }
 
